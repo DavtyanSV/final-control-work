@@ -1,0 +1,95 @@
+// Задача: Написать программу, которая из имеющегося массива строк формирует новый массив из строк,
+//  длина которых меньше, либо равна 3 символам. 
+//  Первоначальный массив можно ввести с клавиатуры, 
+//  либо задать на старте выполнения алгоритма. 
+//  При решении не рекомендуется пользоваться коллекциями, 
+//  лучше обойтись исключительно массивами.
+
+// Примеры:
+// [“Hello”, “2”, “world”, “:-)”] → [“2”, “:-)”]
+// [“1234”, “1567”, “-2”, “computer science”] → [“-2”]
+// [“Russia”, “Denmark”, “Kazan”] → []
+
+
+
+int ReadLenghtArray(string message)
+{
+    System.Console.Write(message + " -> ");
+    return int.Parse(Console.ReadLine());
+}
+
+string[] ComposeArray(string[] array)
+{
+
+    for (int i = 0; i < array.Length; i++)
+    {
+        System.Console.Write($"Напишите {i + 1} элемент массива -> ");
+        array[i] = Console.ReadLine();
+    }
+
+    return array;
+
+}
+
+int LengthNewArray(string[] array)
+{
+    int dlina = 0;
+    int limit = 3;
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i].Length <= limit)
+        {
+            dlina++;
+        }
+    }
+    return dlina;
+}
+
+string[] ComposeNewArray(string[] firstArray, string[] secondArray)
+{
+
+    int limit = 3;
+    for (int k = 0; k < secondArray.Length; )
+    {
+        for (int i = 0; i < firstArray.Length; i++)
+        {
+            
+            if (firstArray[i].Length <= limit)
+            {
+                secondArray[k] = firstArray[i];
+                k++;
+            }
+        }
+    }
+
+    return secondArray;
+}
+
+void PrintArray (string[] array)
+{
+    for (int k = 0; k < array.Length; k++)
+    {
+        System.Console.Write(array[k]+ " ");
+    }
+}
+
+int dlinaOrigin = ReadLenghtArray("Введите сколько элементов хотите добавить в массив");
+
+string[] arrayOrigin = new string[dlinaOrigin];
+
+ComposeArray(arrayOrigin);
+
+int dlinaNewArray = LengthNewArray(arrayOrigin);
+
+string[] newArray = new string[dlinaNewArray];
+
+newArray = ComposeNewArray(arrayOrigin, newArray);
+PrintArray(arrayOrigin);
+System.Console.WriteLine();
+PrintArray(newArray);
+
+
+
+
+
+
